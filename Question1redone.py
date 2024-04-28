@@ -1,11 +1,11 @@
-from tabulate import tabulate
 import pandas as pd
+from tabulate import tabulate
 
 # Constants
 T = 10  # Value of T
 A = 26  # Last two digits of my matriculation number (210502126)
 
-# Function definition based on the piecewise conditions
+# Function definition
 def f(t):
     if 0 <= t <= T / 2:
         return A - (4 * A / T) * t
@@ -16,14 +16,16 @@ def f(t):
     elif 3 * T / 2 < t <= 2 * T:
         return -7 * A + (4 * A / T) * t
 
-# Generate a list of t values from 0 to 2T in integer steps
+# Create a DataFrame
 t_values = list(range(0, 2 * T + 1))
+data = {'t': t_values, 'f(t)': [f(t) for t in t_values]}
+df = pd.DataFrame(data)
 
-# Create a DataFrame for the table
-table = {'t': t_values, 'f(t)': [f(t) for t in t_values]}
+# Transpose the DataFrame to render it horizontally
+df_transposed = df.T
 
-# Use tabulate to format the table
-formatted_table = tabulate(pd.DataFrame(table), headers='keys', tablefmt='grid')
+# Render the table horizontally with tabulate
+formatted_table = tabulate(df_transposed, headers='keys', tablefmt='grid')
 
-# Display the formatted table
+# Display the transposed table
 print(formatted_table)
