@@ -2,12 +2,11 @@ import pandas as pd
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 import time
-#import os   for forcing exit
-import sys  # for forcing exit
+import sys
 
 # Constants
-T = 10
-A = 26
+T = 10  # Value of T
+A = 26  # Last two digits of my matriculation number (210502126)
 
 # Function definition based on the piecewise conditions
 def f(t):
@@ -36,18 +35,20 @@ plt.xlabel("t")
 plt.ylabel("f(t)")
 plt.grid(True)
 
-# Annotate the graph with top-right text
+# Add annotation at the top-right corner
 name = "Bamidele Israel"
 matric_no = "210502126"
-plt.text(1.05, 1.05, f"Name: {name}\nMatriculation number: {matric_no}",
+plt.text(1.05, 1.05, f"Name: {name}\nMatriculation no: {matric_no}",
          horizontalalignment='right',
          verticalalignment='top',
          transform=plt.gca().transAxes)
 
-# Display the plot for a set duration, then close and exit
-plt.show(block=False)  # Non-blocking mode
-time.sleep(5)  # Adjust the sleep time as needed
-plt.close()  # Close the plot after delay
+# Display the graph
+plt.show()
 
-# Force the program to exit
-sys.exit()  # or os._exit(0)
+# Prompt the user to end the program
+user_input = input("Would you like to exit the program? (y/yes to exit): ")
+
+# If the user responds with 'y' or 'yes', exit the program
+if user_input.lower() in ["y", "yes"]:
+    sys.exit()  # Exit the program
