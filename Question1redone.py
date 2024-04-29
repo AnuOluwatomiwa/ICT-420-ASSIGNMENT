@@ -54,4 +54,4 @@ user_input = input("Would you like to exit the program? (y/yes to exit): ")
 
 # If the user says 'y' or 'yes', exit the program
 if user_input.lower() in ["y", "yes"]:
-    sys.exit()  # If yes, exit the program
+    sys.exit()  # Exit the program
