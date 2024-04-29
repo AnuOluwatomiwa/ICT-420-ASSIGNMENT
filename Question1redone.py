@@ -1,13 +1,15 @@
 import pandas as pd
 from tabulate import tabulate
 import matplotlib.pyplot as plt
-import time  # for sleep
+import time
+#import os   for forcing exit
+import sys  # for forcing exit
 
 # Constants
-T = 10  # Value of T
-A = 26  # Last two digits of my matriculation number (210502126)
+T = 10
+A = 26
 
-# Function definition
+# Function definition based on the piecewise conditions
 def f(t):
     if 0 <= t <= T / 2:
         return A - (4 * A / T) * t
@@ -23,9 +25,9 @@ t_values = list(range(0, 2 * T + 1))
 data = {'t': t_values, 'f(t)': [f(t) for t in t_values]}
 df = pd.DataFrame(data)
 
-# Display the table
+# Print the table of values
 formatted_table = tabulate(df.T, headers='keys', tablefmt='grid')
-print(formatted_table)  # Print the table before plotting
+print(formatted_table)
 
 # Plot the graph
 plt.plot(df['t'], df['f(t)'], marker='o', linestyle='-', color='b')
@@ -35,14 +37,17 @@ plt.ylabel("f(t)")
 plt.grid(True)
 
 # Annotate the graph with top-right text
-name = "John Doe"
-matric_no = "12345678"
-plt.text(1.05, 1.05, f"name: {name}\nmatriculation no: {matric_no}",
+name = "Bamidele Israel"
+matric_no = "210502126"
+plt.text(1.05, 1.05, f"Name: {name}\nMatriculation number: {matric_no}",
          horizontalalignment='right',
          verticalalignment='top',
          transform=plt.gca().transAxes)
 
-# Show the graph and wait for 5 seconds, then close and exit
-plt.show()
-time.sleep(5)  # Wait for a few seconds before closing the plot
-plt.close()  # Close the plot to automatically exit the program
+# Display the plot for a set duration, then close and exit
+plt.show(block=False)  # Non-blocking mode
+time.sleep(5)  # Adjust the sleep time as needed
+plt.close()  # Close the plot after delay
+
+# Force the program to exit
+sys.exit()  # or os._exit(0)
