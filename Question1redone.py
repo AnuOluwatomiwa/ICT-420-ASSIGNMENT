@@ -43,16 +43,15 @@ plt.text(1.05, 1.05, f"Name: {name}\nMatriculation no: {matric_no}",
          verticalalignment='top',
          transform=plt.gca().transAxes)
 
-# Non-blocking display of the plot
-plt.show(block=False)  # Non-blocking mode to allow code to continue
+# Non-blocking mode to ensure the plot renders without blocking
+plt.show(block=False)
 
-# Give time for the graph to render
-import time
-time.sleep(20)  # Adjust as needed for the plot to fully render
+# Pause to ensure the graph has time to render
+time.sleep(5)  # Increased delay for additional time to render the plot
 
-# Prompt the user to exit the program
+# Ask the user if they want to exit
 user_input = input("Would you like to exit the program? (y/yes to exit): ")
 
-# If the user responds with 'y' or 'yes', exit the program
+# If the user says 'y' or 'yes', exit the program
 if user_input.lower() in ["y", "yes"]:
-    sys.exit()  # Exit the program
+    sys.exit()  # Ensure program exits
