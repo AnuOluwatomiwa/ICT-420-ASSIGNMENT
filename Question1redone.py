@@ -1,6 +1,7 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 from tabulate import tabulate
+import matplotlib.pyplot as plt
+import time  # for sleep
 
 # Constants
 T = 10  # Value of T
@@ -22,26 +23,26 @@ t_values = list(range(0, 2 * T + 1))
 data = {'t': t_values, 'f(t)': [f(t) for t in t_values]}
 df = pd.DataFrame(data)
 
-# Plotting the graph
+# Display the table
+formatted_table = tabulate(df.T, headers='keys', tablefmt='grid')
+print(formatted_table)  # Print the table before plotting
+
+# Plot the graph
 plt.plot(df['t'], df['f(t)'], marker='o', linestyle='-', color='b')
 plt.title("Plot of f(t) against t")
 plt.xlabel("t")
 plt.ylabel("f(t)")
 plt.grid(True)
 
-# Add text at the top right of the graph
-name = "Bamidele Israel"
-matric_no = "210502126"
-# Using axes coordinates, where (1, 1) is the top right
-plt.text(1.05, 1.05, f"name: {name}\nmatriculation no: {matric_no}", 
-         horizontalalignment='right', 
-         verticalalignment='top', 
+# Annotate the graph with top-right text
+name = "John Doe"
+matric_no = "12345678"
+plt.text(1.05, 1.05, f"name: {name}\nmatriculation no: {matric_no}",
+         horizontalalignment='right',
+         verticalalignment='top',
          transform=plt.gca().transAxes)
 
-# Show the graph
+# Show the graph and wait for 5 seconds, then close and exit
 plt.show()
-
-# Display the table formatted with tabulate
-df_transposed = df.T
-formatted_table = tabulate(df_transposed, headers='keys', tablefmt='grid')
-print(formatted_table)
+time.sleep(5)  # Wait for a few seconds before closing the plot
+plt.close()  # Close the plot to automatically exit the program
