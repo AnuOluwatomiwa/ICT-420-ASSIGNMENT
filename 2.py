@@ -31,16 +31,17 @@ plt.figure()
 plt.plot(t, f_t, 'r-', label='f(t) = 0.8A cos(ωt)')
 plt.plot(time_points, f_t_values, 'bo', label='Given points')
 
-# Adding personal information and date to the plot
-# You can customize with your name and matriculation number
-name = "Your Name Here"
-matriculation_number = "Your Matriculation Number Here"
+# Adding personal information to the plot in the top-right corner
+name = "Bamidele Israel"
+matriculation_number = "210502126"
 date = "April 19th, 2024"
 
-plt.text(1.5 * T, 0.8 * A, f"Name: {name}\nMatriculation Number: {matriculation_number}\nDate: {date}", 
-         fontsize=10, 
+# Use plt.text() to add information to the plot
+# Coordinates are given in axis fractions to position text at the top-right corner
+plt.text(1.05, 1.05, f"Name: {name}\nMatriculation no: {matriculation_number}",
+         horizontalalignment='right',
          verticalalignment='top',
-         horizontalalignment='right')
+         transform=plt.gca().transAxes)
 
 # Plot title and labels
 plt.title("Signal f(t) from t = 0 to t = 2T")
